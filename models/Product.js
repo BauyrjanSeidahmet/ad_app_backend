@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const idValidator = require("mongoose-id-validator");
+const idValidator = require('mongoose-id-validator');
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
@@ -10,35 +10,35 @@ const ProductSchema = new Schema({
   },
   category: {
     type: Schema.Types.ObjectId,
-    ref: "Category",
-    enum: ['Computers', 'Cars', 'Others'],
-    required: true
+    ref: 'Category',
+    enum: ['computers', 'cars', 'others'],
+    required: true,
   },
   title: {
     type: String,
-    required: true
+    required: true,
   },
   price: {
     type: Schema.Types.Decimal128,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   image: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 ProductSchema.plugin(idValidator, {
-  message: "Bad ID value for {PATH}"
+  message: 'Bad ID value for {PATH}',
 });
 
 ProductSchema.methods.addUser = function (userId) {
   this.user = userId;
 };
 
-const Product = mongoose.model("Product", ProductSchema);
+const Product = mongoose.model('Product', ProductSchema);
 module.exports = Product;
